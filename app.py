@@ -76,6 +76,14 @@ if st.button("Predict", use_container_width=True):
             else:
                 df_input[col] = le.transform([val])
 
+    # exact column order from training
+    feature_cols = [
+              'A1_Score', 'A2_Score', 'A3_Score', 'A4_Score', 'A5_Score',
+              'A6_Score', 'A7_Score', 'A8_Score', 'A9_Score', 'A10_Score',
+             'age', 'gender', 'ethnicity', 'jaundice', 'austim',
+             'contry_of_res', 'used_app_before', 'result', 'relation'
+    ]
+    df_input = df_input[feature_cols]
     pred = model.predict(df_input)[0]
     prob = model.predict_proba(df_input)[0][pred]
 
